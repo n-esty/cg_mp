@@ -42,6 +42,30 @@
                 $result = "Advertentie niet gevonden";
                 return $result;
             }
+        }        
+        
+        public function adList()
+        {
+            $order_col = "created_at";
+            $order_dir = "DESC";
+            if(isset($_GET['dir']) && ($_GET['dir'] == "ASC" || $_GET['dir'] == "DESC")){
+                $order_dir = $_GET['dir'];
+            }
+            if(isset($_GET['by']) && ($_GET['by'] == "asking_price" || $_GET['by'] == "title" || $_GET['by'] == "description")){
+                $order_col = $_GET['by'];
+            }
+            $where = "";
+            if(isset($_GET['user']) && intval($_GET['user'])>0){
+                $where = "WHERE user_id=" . $_GET['user'];
+            }
+            $stmt = $this->db->prepare("SELECT * FROM ads $where ORDER BY $order_col $order_dir");
+            $stmt->execute();
+            $result = $stmt->fetchAll();
+            $json = json_encode($result);
+            foreach($result as $row){  
+                
+            }
+            return $json;
         }
 
         /**

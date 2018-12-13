@@ -2,9 +2,10 @@ body{ font: 14px sans-serif; }
 .wrapper{ width: 800px; padding: 20px;margin-left:auto;margin-right:auto; }
 table td th{padding:5px}
 table {width:100%}
-table td {width:33%;padding:10px} 
+table td {width:25%;padding:10px} 
 table th {padding:10px} 
 
+.admin table td {width:33%;padding:0px;} 
 .admin table td {width:33%;padding:0px;} 
 .admin table {color:white; font-size:14px}
 .admin table tr {border-bottom: 5pt solid white}
