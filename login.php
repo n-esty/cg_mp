@@ -4,8 +4,8 @@
     $username_err = $password_err = $passwordConfirm_err = "";
     if(isset($_POST["login"]))
     {
-        include('connect_db.php');
-        include('user_service.php');
+        include('includes/connect_db.php');
+        include('includes/user_service.php');
         $userinfo = array(
         'username'=>$_POST['username'],
         'password'=>$_POST['password'],
@@ -15,7 +15,7 @@
         if(is_array($login)){
             extract($login);
         } elseif ($login) {
-            header("location: welcometest.php");
+            header("location: index.php#user=" . $_SESSION['user_id']);
         }
     }
 ?>

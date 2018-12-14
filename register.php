@@ -4,8 +4,8 @@
     $username_err = $password_err = $passwordConfirm_err = "";
     if(isset($_POST["submit"]))
     {
-        include('connect_db.php');
-        include('user_service.php');
+        include('includes/connect_db.php');
+        include('includes/user_service.php');
         $userinfo = array(
         'username'=>$_POST['username'],
         'password'=>$_POST['password'],

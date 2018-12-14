@@ -1,7 +1,7 @@
 <?php
     session_start();
-    include('connect_db.php');
-    include('ad_service.php');
+    include('includes/connect_db.php');
+    include('includes/ad_service.php');
     $adinfo = [];
     $adService = new AdService($pdo, $adinfo);
     $showAd = $adService->showAd();
@@ -23,6 +23,7 @@
             <h2>Advertentie: <?php echo $showAd['title'] ?></h2>
             <p><strong>Specificatie:</strong><br><?php echo $showAd['description'] ?></p>
             <p><strong>Vraag prijs:</strong><br><?php echo $showAd['asking_price'] ?></p>
+             <a href="delete.php?type=ad&id=<?php echo $_GET['ad'] ?>" name="delete" class="btn btn-default">Delete</a>
         </div>
     </body>
 </html>

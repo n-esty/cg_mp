@@ -1,6 +1,7 @@
 var x = "";
 var lastQuery = ""
 var toggle = "DESC";
+var userId = "";
 function loadPage(query, clicked) {
     lastQuery = query;
     if(clicked){
@@ -31,12 +32,27 @@ function loadPage(query, clicked) {
             insertContent();
 		}
 	};
+    if(detectPage("#user")){
+        query += "&user=" + userId;
+        if (currentUser == userId){
+            document.getElementById("title").innerHTML = "Uw openstaande advertenties, " + userName;
+        }
+    }
     console.log("ad_list.php" + query);
 	xhr.open("GET", "ad_list.php" + query, true);
 	xhr.send();
        
 }
 
+function detectPage(pageName) {
+    var lh = location.hash.split('=');
+    if(lh[0] == pageName) {
+        userId = lh[1];
+        return true;
+    } else {
+        return false;
+    }
+}
 
 function insertContent() {
     var holder = "";
@@ -58,8 +74,6 @@ window.setInterval(function(){
     if(window.isTabActive){
         loadPage(lastQuery);
         var d = new Date().toLocaleTimeString(); 
-        document.getElementById("lastupdated").innerHTML = "Last updated: " + d;
-        
         console.log(d);
     }
 }, 5000);

@@ -24,6 +24,7 @@
            if(isset($adinfo['description'])){$this->description = $adinfo['description'];}
            if(isset($adinfo['askingPrice'])){$this->askingPrice = $adinfo['askingPrice'];}
            if(isset($_GET['ad'])){$this->ad_id = $_GET['ad'];}
+           if(isset($_GET['id'])){$this->ad_id = $_GET['id'];}
            $this->errors = array();
         }
 
@@ -41,6 +42,14 @@
             } else {
                 $result = "Advertentie niet gevonden";
                 return $result;
+            }
+        }     
+        
+        public function deleteAd()
+        {
+            $stmt = $this->db->prepare('DELETE FROM ads WHERE id = ?');
+            if($stmt->execute(array($this->ad_id))) {
+                return true;
             }
         }        
         

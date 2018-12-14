@@ -4,8 +4,8 @@
     $title_err = $description_err = $askingPrice_err = "";
     if(isset($_POST["place"]))
     {
-        include('connect_db.php');
-        include('ad_service.php');
+        include('includes/connect_db.php');
+        include('includes/ad_service.php');
         $adinfo = array(
         'title'=>$_POST['title'],
         'description'=>$_POST['description'],
